@@ -1,0 +1,15 @@
+{
+  "name": "graphqlwrapper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "fermentationist",
+  "license": "ISC",
+  "dependencies": {
+    "graphql": "^14.4.2"
+  }
+}
