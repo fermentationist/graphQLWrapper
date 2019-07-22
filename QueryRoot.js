@@ -1,8 +1,7 @@
 const {
-    graphql,
     GraphQLObjectType,
-    GraphQLList,
     GraphQLString,
+    GraphQLInt
 } = require("graphql");
 
 const QueryRoot = new GraphQLObjectType({
@@ -12,6 +11,10 @@ const QueryRoot = new GraphQLObjectType({
         hello: {
             type: GraphQLString,
             resolve: () => "world",
+        },
+        magic_number: {
+            type: GraphQLInt,
+            resolve: () => 3,
         }
     }),
 });

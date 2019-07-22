@@ -1,8 +1,8 @@
 const {
-    graphql,
     GraphQLObjectType,
     GraphQLID
 } = require("graphql");
+const ContactListType = require("./ContactListType.js");
 
 const ContactType = new GraphQLObjectType({
     name: "Contact",
