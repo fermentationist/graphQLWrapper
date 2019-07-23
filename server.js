@@ -1,23 +1,24 @@
 const {graphql} = require("graphql");
-const app = require("express")();
-const PORT = 4000;
+const express = require("express");
+const path = require("path");
+const bodyParser = require("body-parser");
 const graphQLHTTP = require("express-graphql");
 const Schema = require("./Schema.js");
 
-app.use("/", graphQLHTTP({
+const PORT = process.env.PORT || 4000;
+const env = process.env.NODE_ENV || "development";
+const API_KEY = env === "development" ? process.env.ACTIVECAMPAIGN_API_KEY : "api_key_goes_here";
+
+const app = express();
+// middleware - encoding
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static(path.join(__dirname, "/")));
+
+// middleware - express-graphql
+app.use("/graphql", graphQLHTTP({
     schema: Schema,
     graphiql: true,
 }));
 
-app.get("/", (req, res) => {
-    console.log("ø", req.json())
-    res.header("Access-Control-Allow-Origin", "*")
-    return res.end(200)
-})
-
-app.listen(PORT, () => console.log(`Pay no attention to the Express app listening on PORT ${PORT}`));
-console.log("huh?");
-
-// const query = `{ hello }`;
-// const query2 = `{ magic_number }`;
-// graphql(Schema, query2).then(result => console.log(result));
+app.listen(PORT, () => console.log(`Pay no attention to the graphQL server listening on http://localhost:${PORT}`));

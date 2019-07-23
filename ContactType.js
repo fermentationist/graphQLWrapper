@@ -1,8 +1,9 @@
 const {
     GraphQLObjectType,
+    GraphQLString,
     GraphQLID
 } = require("graphql");
-const ContactListType = require("./ContactListType.js");
+// const ContactListType = require("./ContactListType.js");
 
 const ContactType = new GraphQLObjectType({
     name: "Contact",
@@ -18,9 +19,6 @@ const ContactType = new GraphQLObjectType({
         },
         email: {
             type: GraphQLString
-        },
-        links: {
-            
         }
     }
 });
