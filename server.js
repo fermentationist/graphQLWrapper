@@ -4,6 +4,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const graphQLHTTP = require("express-graphql");
 const Schema = require("./Schema.js");
+const RootQuery = require("./RootQuery");
 
 const PORT = process.env.PORT || 4000;
 const env = process.env.NODE_ENV || "development";
@@ -18,6 +19,7 @@ app.use(express.static(path.join(__dirname, "/")));
 // middleware - express-graphql
 app.use("/graphql", graphQLHTTP({
     schema: Schema,
+    rootValue: RootQuery,
     graphiql: true,
 }));
 
