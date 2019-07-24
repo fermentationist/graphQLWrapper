@@ -7,8 +7,6 @@ const Schema = require("./Schema.js");
 const RootQuery = require("./RootQuery");
 
 const PORT = process.env.PORT || 4000;
-const env = process.env.NODE_ENV || "development";
-const API_KEY = env === "development" ? process.env.ACTIVECAMPAIGN_API_KEY : "api_key_goes_here";
 
 const app = express();
 // middleware - encoding
@@ -20,7 +18,7 @@ app.use(express.static(path.join(__dirname, "/")));
 app.use("/graphql", graphQLHTTP({
     schema: Schema,
     rootValue: RootQuery,
-    graphiql: true,
+    graphiql: {defaultQuery: "# query {contacts{firstName}}"},
 }));
 
 app.listen(PORT, () => console.log(`Pay no attention to the graphQL server listening on http://localhost:${PORT}`));

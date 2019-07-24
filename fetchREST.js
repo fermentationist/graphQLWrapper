@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 const {Request, Headers} = fetch;
 
 const env = process.env.NODE_ENV || "development";
-const API_KEY = env === "development" ? process.env.ACTIVECAMPAIGN_API_KEY : "production env variable goes here";
+const API_KEY = process.env.ACTIVECAMPAIGN_API_KEY;
 const baseURL = "https://independentdeveloper1563819244.api-us1.com/api/3/";
 
 const query = async (endpoint = "", args, fetchMethod = "GET") => {
