@@ -3,12 +3,16 @@ const {
     GraphQLSchema,
     GraphQLObjectType,
     GraphQLString,
+    buildSchema
 } = require("graphql");
 const QueryRoot = require("./QueryRoot.js");
 
 console.log("graphql:", graphql);
 
-const schema = {
-    query: QueryRoot
-};
-module.exports = new GraphQLSchema(schema);
+const schema = buildSchema(`{
+    type Query: ${QueryRoot}, 
+}`);
+// {
+//     query: QueryRoot
+// };
+module.exports = schema//new GraphQLSchema(schema);

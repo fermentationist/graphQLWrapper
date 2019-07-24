@@ -1,7 +1,7 @@
 
 
 const getNum = async query => {
-    const request = new Request();
+    // const request = new Request();
     // const header = new Headers({
     //     "Content-Type": "application/"
     // });

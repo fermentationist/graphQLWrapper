@@ -1,13 +1,14 @@
 const {
     GraphQLObjectType,
     GraphQLString,
-    GraphQLInt
+    GraphQLInt,
+    GraphQLList,
 } = require("graphql");
 const ContactType = require("./ContactType.js");
-const baseURL = "https://independentdeveloper1563819244.api-us1.com/api/3/";
+
+
 const QueryRoot = new GraphQLObjectType({
     name: "QueryRoot",
-    description: "you know, for kids...",
     fields: () => ({
         hello: {
             type: GraphQLString,
@@ -17,12 +18,10 @@ const QueryRoot = new GraphQLObjectType({
             type: GraphQLInt,
             resolve: () => 3,
         },
-        contact: {
-            type: GraphQLObjectType,
-            resolve: () => {
-                fetch()
-            },
-    }),
+        contacts: {
+           type: [ContactType]
+        },
+    })
 });
 
 module.exports =  QueryRoot;
