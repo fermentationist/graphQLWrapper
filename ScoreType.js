@@ -7,3 +7,4 @@ const ScoreType = new GraphQLObjectType({
 });
 
 module.exports = ScoreType;
+exports.scoreFields = scoreFields;

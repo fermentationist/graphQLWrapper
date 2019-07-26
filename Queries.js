@@ -36,16 +36,13 @@ const Queries = {
             id: {type: GraphQLID}
         },
         resolve: async (root, {id}) => {
-            return await fetchREST(`contacts/scores/${id}`).then(data => data);
+            return await fetchREST(`scores/${id}`).then(data => data.score);
         },
     },
     scores: {
         type: new GraphQLList(Score),
-        args: {
-            id: {type: GraphQLID}
-        },
-        resolve: async (root, {id}) => {
-            return await fetchREST(`contacts/scores/${id}`).then(data => data);
+        resolve: async () => {
+            return await fetchREST(`scores`).then(data => data.scores);
         },
     },
     

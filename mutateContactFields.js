@@ -1,0 +1,29 @@
+const {
+    GraphQLInputObjectType,
+    GraphQLID,
+    GraphQLString,
+    GraphQLNonNull,
+} = require("graphql");
+const contactFields = require("./contactFields.js");
+const linkFields = require("./linkFields.js");
+
+const linkInputs = {// change link type from GraphQLObjectType (output type) to GraphQLInputObjectType (input type)
+    type: new GraphQLInputObjectType({
+        name: "LinkInputs",
+        fields: linkFields
+    })
+}
+//∞∞∞∞∞ customize linkFields object for use in createContact mutation ∞∞∞∞∞//
+const createContactFields = {...contactFields};
+delete createContactFields.id;// id is assigned automatically when contact is created, so the id field should not be set through input
+createContactFields.links = {...linkInputs};// change link type from GraphQLObjectType (output type) to GraphQLInputObjectType (input type)
+createContactFields.email = new GraphQLNonNull(GraphQLString);// email is a required field when creating a new contact
+
+
+//∞∞∞∞∞ customize linkFields object for use in updateContact mutation ∞∞∞∞∞//
+const updateContactFields = {...contactFields};
+updateContactFields.links = {...linkInputs};// change link type from GraphQLObjectType (output type) to GraphQLInputObjectType (input type)
+updateContactFields.id = {type: new GraphQLNonNull(GraphQLID)};// id is a required field when updating a contact
+
+exports.updateContactFields = updateContactFields;
+exports.createContactFields = createContactFields;

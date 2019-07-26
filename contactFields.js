@@ -3,7 +3,9 @@ const {
     GraphQLList,
     GraphQLString,
     GraphQLNonNull,
+    GraphQLObjectType,
 } = require("graphql");
+const linkFields = require("./linkFields.js");
 
 const contactFields = {    
     id: {
@@ -16,7 +18,7 @@ const contactFields = {
         type: GraphQLString,
     },
     email: {
-        type: new GraphQLNonNull(GraphQLString),
+        type: GraphQLString,
     },
     phone: {
         type: GraphQLString,
@@ -110,5 +112,12 @@ const contactFields = {
     },
     accountContacts: {
         type: GraphQLList(GraphQLString),
-    }}
+    },
+    links: {
+        type: new GraphQLObjectType({
+            name: "Links",
+            fields: linkFields
+        })
+    }
+}
 module.exports = contactFields;

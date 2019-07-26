@@ -1,34 +1,23 @@
-const {
-    GraphQLObjectType,
-    GraphQLInputObjectType,
-    GraphQLID,
-    GraphQLList,
-    GraphQLString,
-    GraphQLNonNull,
-} = require("graphql");
 const Contact = require("./ContactType.js");
-const contactFields = require("./contactFields.js");
 const fetchREST = require("./fetchREST.js");
-const createFields = {...contactFields};
-delete createFields.id;
-const updateFields = {...contactFields};
-updateFields.email = {type: GraphQLString};
-updateFields.id = {type: new GraphQLNonNull(GraphQLID)};
+const {updateContactFields, createContactFields} = require("./mutateContactFields.js");
+console.log("TCL: updateContactFields, createContactFields", updateContactFields, createContactFields)
+console.log("TCL: createContactFields.email", createContactFields.email)
+
 const Mutations = {
     createContact: {
         type: Contact,
-        args: createFields,
+        args: createContactFields,
         resolve: async (root, args, context, info) => {
             return await fetchREST("contacts", {contact: args}, "POST").then(data => {
                 console.log("contact created.", data);
                 return data.contact;
             })
-            
         }
     },  
     updateContact: {
         type: Contact,
-        args: updateFields,
+        args: updateContactFields,
         resolve: async (root, args) => {
             const {id, ...body} = args;
             return await fetchREST(`contacts/${args.id}`, {contact: body}, "PUT").then(() => console.log("contact updated."))
@@ -36,7 +25,7 @@ const Mutations = {
     },
     deleteContact: {
         type: Contact,
-        args: updateFields,
+        args: updateContactFields,
         resolve: async (root, args) => {
             const {id, ...body} = args;
             return await fetchREST(`contacts/${args.id}`, null, "DELETE").then(() => console.log("contact deleted."))

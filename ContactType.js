@@ -7,5 +7,5 @@ const ContactType = new GraphQLObjectType({
 });
 
 module.exports = ContactType;
-
+exports.contactFields = contactFields;
 
