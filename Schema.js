@@ -6,11 +6,14 @@ const {
     buildSchema
 } = require("graphql");
 const RootQuery = require("./RootQuery.js");
+const RootMutation = require("./RootMutation.js");
+console.log("TCL: RootMutation", RootMutation)
 
-console.log("graphql:", graphql);
+
 
 const schema = {
     query: RootQuery, 
+    mutation: RootMutation
 };
 
 module.exports = new GraphQLSchema(schema);
