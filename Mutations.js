@@ -1,8 +1,6 @@
-const Contact = require("./ContactType.js");
+const {contactFields} = Contact = require("./ContactType.js");
 const fetchREST = require("./fetchREST.js");
 const {updateContactFields, createContactFields} = require("./mutateContactFields.js");
-console.log("TCL: updateContactFields, createContactFields", updateContactFields, createContactFields)
-console.log("TCL: createContactFields.email", createContactFields.email)
 
 const Mutations = {
     createContact: {
@@ -12,7 +10,7 @@ const Mutations = {
             return await fetchREST("contacts", {contact: args}, "POST").then(data => {
                 console.log("contact created.", data);
                 return data.contact;
-            })
+            });
         }
     },  
     updateContact: {
@@ -20,7 +18,10 @@ const Mutations = {
         args: updateContactFields,
         resolve: async (root, args) => {
             const {id, ...body} = args;
-            return await fetchREST(`contacts/${args.id}`, {contact: body}, "PUT").then(() => console.log("contact updated."))
+            return await fetchREST(`contacts/${args.id}`, {contact: body}, "PUT").then(data => {
+                console.log("contact updated.");
+                return data.contact;
+            });
         }
     },
     deleteContact: {
@@ -28,10 +29,13 @@ const Mutations = {
         args: updateContactFields,
         resolve: async (root, args) => {
             const {id, ...body} = args;
-            return await fetchREST(`contacts/${args.id}`, null, "DELETE").then(() => console.log("contact deleted."))
+            return await fetchREST(`contacts/${args.id}`, null, "DELETE").then(data => {
+                console.log("contact deleted.");
+            console.log("TCL: data", data)
+                return data;
+            });
         }
     },
-
 }
 
 module.exports = Mutations;

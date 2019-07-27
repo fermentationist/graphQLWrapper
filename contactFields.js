@@ -4,6 +4,7 @@ const {
     GraphQLString,
     GraphQLNonNull,
     GraphQLObjectType,
+    GraphQLBoolean,
 } = require("graphql");
 const linkFields = require("./linkFields.js");
 
@@ -75,7 +76,7 @@ const contactFields = {
         type: GraphQLString,
     },
     deleted: {
-        type: GraphQLString,
+        type: GraphQLBoolean,
     },
     anonymized: {
         type: GraphQLString,
@@ -115,9 +116,9 @@ const contactFields = {
     },
     links: {
         type: new GraphQLObjectType({
-            name: "Links",
-            fields: linkFields
-        })
-    }
+            name: "ContactLinks",
+            fields: linkFields,
+        }),
+    },
 }
 module.exports = contactFields;

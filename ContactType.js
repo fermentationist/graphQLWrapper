@@ -5,7 +5,8 @@ const ContactType = new GraphQLObjectType({
     name: "Contact",
     fields: () => contactFields,
 });
-
+ContactType.contactFields = contactFields;
 module.exports = ContactType;
-exports.contactFields = contactFields;
+
+
 

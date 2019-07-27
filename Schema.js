@@ -3,17 +3,16 @@ const {
     GraphQLSchema,
     GraphQLObjectType,
     GraphQLString,
-    buildSchema
+    buildSchema,
+    printSchema,
 } = require("graphql");
 const RootQuery = require("./RootQuery.js");
 const RootMutation = require("./RootMutation.js");
-console.log("TCL: RootMutation", RootMutation)
 
-
-
-const schema = {
+const Schema = new GraphQLSchema({
     query: RootQuery, 
     mutation: RootMutation
-};
+});
 
-module.exports = new GraphQLSchema(schema);
+module.exports = Schema;
+// printSchema(Schema)

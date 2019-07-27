@@ -5,47 +5,52 @@ const {
     GraphQLString,
     GraphQLInt,
     GraphQLList,
-    GraphQLID
+    GraphQLID,
+    GraphQLInterfaceType,
 } = graphql;
 const Contact = require("./ContactType.js");
 const Score = require("./ScoreType");
+const Automation = require("./AutomationType.js");
 
-// const getContact = async (root, {id}) => {
-//     return await fetchREST(`contacts/${id}`).then(data => data.contact);
-// }
+const getAll = field => {
+    return async () => {
+        const result = await fetchREST(field).then(data => data);
+        return result.meta.total === "0" ? null : result[field];
+    }
+}
+
+const getOne = async (type, id) => {
+    const result = await fetchREST(`${type}s/${id}`).then(data => data);
+    return result.message ? result.message : result[type];
+}
+
 const Queries = {
     contacts: {
         type: GraphQLList(Contact),
-        resolve:  () => {
-            console.log("contacts.resolve() called.")
-            return fetchREST("contacts").then(data => data.contacts)
-        },
+        resolve:  getAll("contacts"),
     },
     contact: {
         type: Contact,
         args: {
             id: {type: GraphQLID}
         },
-        resolve:  async (root, {id}) => {
-            return await fetchREST(`contacts/${id}`).then(data => data.contact);
-        },
+        resolve: (root, {id}) => getOne("contact", id),
     },
     score: {
         type: Score,
         args: {
             id: {type: GraphQLID}
         },
-        resolve: async (root, {id}) => {
-            return await fetchREST(`scores/${id}`).then(data => data.score);
-        },
+        resolve: (root, {id}) => getOne("contact", id),
     },
     scores: {
-        type: new GraphQLList(Score),
-        resolve: async () => {
-            return await fetchREST(`scores`).then(data => data.scores);
-        },
+        type: GraphQLList(Score),
+        resolve: getAll("scores"),
     },
-    
+    automations: {
+        type: GraphQLList(Automation),
+        resolve: getAll("automations"),
+    },  
 }
 
 module.exports = Queries;
