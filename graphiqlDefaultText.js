@@ -107,21 +107,6 @@ query findContact{
       siteLogoSmall
     }
   }
-  
-  
-   query getCampaignLinks {
-     campaigns(id:1){
-       user
-       automation
-       links {
-         user
-         automation
-         campaignMessage
-         links
-         aggregateRevenues
-       }
-  
-     }
-   }  
+
 `;
 module.exports = graphiqlDefaultText
