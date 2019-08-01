@@ -1,5 +1,5 @@
 const {GraphQLObjectType} = require("graphql");
-const automationFields = require("./automationFields.js");
+const automationFields = require("./fields/automation/automationFields.js");
 
 const AutomationType = new GraphQLObjectType({
     name: "AutomationType",

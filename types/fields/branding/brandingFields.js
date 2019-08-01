@@ -54,7 +54,9 @@ const brandingFields = {
     publicTemplateCss: {
         type: GraphQLString,
     },
-    favicon: null,
+    favicon: {
+        type: GraphQLString,
+    },
     id: {
         type: GraphQLString,
     },

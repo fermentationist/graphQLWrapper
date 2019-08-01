@@ -4,7 +4,6 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const graphQLHTTP = require("express-graphql");
 const Schema = require("./Schema.js");
-const RootQuery = require("./RootQuery");
 const graphiqlDefaultText = require("./graphiqlDefaultText.js");
 const PORT = process.env.PORT || 4000;
 

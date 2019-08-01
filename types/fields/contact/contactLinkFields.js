@@ -1,5 +1,5 @@
 const {GraphQLString} = require("graphql");
-const linkFields = {
+const contactLinkFields = {
     bounceLogs: {
         type: GraphQLString,
     },
@@ -50,4 +50,4 @@ const linkFields = {
     },
 }
 
-module.exports = linkFields;
+module.exports = contactLinkFields;

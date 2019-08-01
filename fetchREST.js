@@ -13,9 +13,10 @@ const query = async (endpoint = "", args, fetchMethod = "GET") => {
         body: JSON.stringify(args) || null
     });
     return await fetch(req).then(res => {
+        console.log("TCL: query -> req", req)
+        console.log("TCL: query -> res", res)
         return res.json();
     }).then(data => {
-    console.log("∞∞∞∞ TCL: query -> data", data)
         return data;
     }).catch(err => console.trace(err));
 };

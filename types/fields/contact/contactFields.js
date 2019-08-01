@@ -6,7 +6,7 @@ const {
     GraphQLObjectType,
     GraphQLBoolean,
 } = require("graphql");
-const linkFields = require("./linkFields.js");
+const contactLinkFields = require("./contactLinkFields.js");
 
 const contactFields = {    
     id: {
@@ -117,7 +117,7 @@ const contactFields = {
     links: {
         type: new GraphQLObjectType({
             name: "ContactLinks",
-            fields: linkFields,
+            fields: contactLinkFields,
         }),
     },
 }
