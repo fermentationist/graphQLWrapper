@@ -16,7 +16,6 @@ app.use(express.static(path.join(__dirname, "/")));
 // middleware - express-graphql
 app.use("/graphql", graphQLHTTP({
     schema: Schema,
-    // rootValue: RootQuery,
     graphiql: {defaultQuery: graphiqlDefaultText},
 }));
 

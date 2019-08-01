@@ -1,5 +1,5 @@
 const graphiqlDefaultText = `
-# uncomment one query or mutation at a time and press the 'play button' above to run it against the database
+# press the button to select one of the queries or mutations to run. You can add or edit queries and mutations below.
 
 query findContact{
     contact (id:11){
