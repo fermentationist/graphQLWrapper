@@ -92,6 +92,10 @@ query findContact{
     }
   }
   
+  
+  
+  
+  
   mutation updateBranding {
     updateBranding(id:1, siteLogoSmall: "https://www.dennis-hodges.com/favicon.ico"){
       siteLogoSmall
