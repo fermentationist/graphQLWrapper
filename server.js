@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const graphQLHTTP = require("express-graphql");
 const Schema = require("./Schema.js");
 const graphiqlDefaultText = require("./graphiqlDefaultText.js");
+const graphiqlVariables = require("./graphiqlVariables.js");
 const PORT = process.env.PORT || 4000;
 
 const app = express();
@@ -16,7 +17,10 @@ app.use(express.static(path.join(__dirname, "/")));
 // middleware - express-graphql
 app.use("/graphql", graphQLHTTP({
     schema: Schema,
-    graphiql: {defaultQuery: graphiqlDefaultText},
+    graphiql: {
+        defaultQuery: graphiqlDefaultText,
+        variables: graphiqlDefaultText
+    },
 }));
 
 app.listen(PORT, () => console.log(`Pay no attention to the graphQL server listening on http://localhost:${PORT}`));
