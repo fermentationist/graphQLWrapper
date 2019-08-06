@@ -1,13 +1,17 @@
 const graphiqlDefaultText = `
-# press the button to select one of the queries or mutations to run. You can add or edit queries and mutations below.
+# To learn about GraphQL, I have taken Active-Campaign's REST API and 
+# wrapped it in a GraphQL API which has a single endpoint.
 
-query findContact{
-    contact (id:11){
-      email
-      firstName
-      lastName
+# Press the button to select one of the queries or mutations to run. 
+# You can add or edit queries and mutations below.
+
+  query findContact ($contactID: ID!){
+      contact (id: $contactID){
+        email
+        firstName
+        lastName
+      }
     }
-  }
   
   query allContacts {
     contacts {
@@ -20,8 +24,8 @@ query findContact{
     }
   }
   
-  query findCampaign {
-    campaign(id:1){
+  query findCampaign ($campaignID: ID!){
+    campaign(id: $campaignID){
       name
       type
       user
@@ -38,8 +42,8 @@ query findContact{
     }
   }
   
-  query findScore {
-    score(id:1){
+  query findScore ($scoreID: ID!){
+    score(id: $scoreID){
       name
       descript
       status
@@ -53,8 +57,8 @@ query findContact{
     }
   }
   
-  query findBranding {
-    branding (id:1){
+  query findBranding ($brandingID: ID!){
+    branding (id: $brandingID){
       siteName, 
       siteLogoSmall
     }
@@ -78,7 +82,7 @@ query findContact{
   }
   
   mutation updateContact {
-    updateContact( email: "sophiap29@shadypines.com", id: 11
+    updateContact( email: "sophiap21@shadypines.com", id: 11
       ){
       lastName
       firstName
@@ -92,21 +96,18 @@ query findContact{
     }
   }
   
-  
-  
-  
-  
   mutation updateBranding {
     updateBranding(id:1, siteLogoSmall: "https://www.dennis-hodges.com/favicon.ico"){
       siteLogoSmall
     }
   }
   
-  mutation branding {
+  mutation updateBrandingAgain {
     updateBranding(id:1, siteLogoSmall: "https://www.dennis-hodges.com/wrong-link"){
       siteLogoSmall
     }
   }
 
 `;
-module.exports = graphiqlDefaultText
+module.exports = graphiqlDefaultText;
+
