@@ -1,0 +1,8 @@
+.variable-editor {
+    max-height: 30vh;
+    min-height: 20vh;
+}
+.query-editor {
+    max-height: 80vh;
+    min-height: 70vh;
+}
