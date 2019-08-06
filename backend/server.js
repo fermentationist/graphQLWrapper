@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, "/")));
 // middleware - enable cors
 app.use(cors({origin: clientOrigin}));
 // middleware - express-graphql
-app.use("/graphql", graphQLHTTP({
+app.use("/", graphQLHTTP({
     schema: Schema,
     graphiql: false,
 }));
