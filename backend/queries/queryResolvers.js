@@ -6,14 +6,14 @@ const getAll = type => {
         console.log("TCL: data", data)
             return data
         });
-        return result.meta.total === "0" ? null : result[type];
+        return !result ? null : result.meta.total === "0" ? null : result[type];
     }
 }
 
 const getOne = type => {
     const query = async (root, args) => {
         const result = await fetchREST(`${type}s/${args.id}`).then(data => data);
-        return result.message ? result.message : result[type];
+        return !result ? null : result.message ? result.message : result[type];
     }
     return query
 }
