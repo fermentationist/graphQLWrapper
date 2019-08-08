@@ -26,7 +26,7 @@ app.use("/graphql", graphQLHTTP({
 
 app.get("/", (req, res) => {
     console.log("this is being hit")
-    return res.send("./frontend/public/index.html");
+    return res.sendFile("./frontend/public/index.html");
 });
 
-app.listen(PORT, () => console.log(`Pay no attention to the graphQL server listening on http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Pay no attention to the graphQL server listening on port:${PORT}`));
