@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 // serve static files from React app
-app.use(express.static(path.join(__dirname, "frontend/build")));
+app.use(express.static(path.join(__dirname, "/frontend/build")));
 // middleware - enable cors
 app.use(cors({origin: clientOrigin}));
 // middleware - express-graphql
