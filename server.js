@@ -23,7 +23,7 @@ app.use("/graphql", graphQLHTTP({
 
 app.get("*", (req, res) => {
     console.log("this is being hit")
-    return res.sendFile(path.join(__dirname+ "/frontend/build/index.html"));
+    return res.sendFile(path.join(__dirname, "/frontend/build/index.html"));
 });
 
 app.listen(PORT, () => console.log(`Pay no attention to the graphQL server listening on port:${PORT}`));
