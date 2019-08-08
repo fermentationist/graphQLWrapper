@@ -3,7 +3,6 @@ const fetchREST = require("../fetchREST.js");
 const getAll = type => {
     return async () => {
         const result = await fetchREST(type).then(data => {
-        console.log("TCL: data", data)
             return data
         });
         return !result ? null : result.meta.total === "0" ? null : result[type];

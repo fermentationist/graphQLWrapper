@@ -15,10 +15,18 @@ app.use(express.static(path.join(__dirname, "/")));
 
 // middleware - enable cors
 app.use(cors({origin: clientOrigin}));
+
+
+
 // middleware - express-graphql
 app.use("/graphql", graphQLHTTP({
     schema: Schema,
     graphiql: false,
 }));
+
+// app.use("/", (req, res) => {
+//     console.log("this is being hit")
+//     return res.redirect("/frontend/public/index.html");
+// });
 
 app.listen(PORT, () => console.log(`Pay no attention to the graphQL server listening on http://localhost:${PORT}`));

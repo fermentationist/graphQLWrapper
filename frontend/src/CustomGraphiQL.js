@@ -5,10 +5,10 @@ import defaultQueries from "./graphiqlDefaultText.js";
 
 import "./CustomGraphQL.css";
 
-const clientDomain = process.env.NODE_ENV !== "production" ? "http://localhost:4000/graphql" : `${window.location.domain}/graphql`;
+const serverDomain = process.env.NODE_ENV !== "production" ? "http://localhost:4000/graphql" : `${window.location.domain}/graphql`;
 
 const defaultFetcher = async (graphQLParams) => {
-    return await fetch(clientDomain, {
+    return await fetch(serverDomain, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -23,7 +23,7 @@ const CustomGraphiQL = props => {
     return (
         <GraphiQL editorTheme="the-matrix" fetcher={defaultFetcher} query={defaultQueries} defaultQuery={defaultQueries} variables={defaultVariables}{...props}>
             <GraphiQL.Logo>
-                Active-Campaign API GraphQL Endpoint
+                ActiveCampaign API GraphQL Endpoint
             </GraphiQL.Logo>
             <GraphiQL.Toolbar>
                 <GraphiQL.Button
