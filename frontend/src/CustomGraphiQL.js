@@ -5,10 +5,8 @@ import defaultQueries from "./graphiqlDefaultText.js";
 
 import "./CustomGraphQL.css";
 
-const serverDomain = process.env.NODE_ENV !== "production" ? "http://localhost:4000/graphql" : `${window.location.domain}/graphql`;
-
 const defaultFetcher = async (graphQLParams) => {
-    return await fetch(serverDomain, {
+    return await fetch("/graphql", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
