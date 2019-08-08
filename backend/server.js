@@ -11,21 +11,19 @@ const app = express();
 // middleware - encoding
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-// app.use(express.static(path.join(__dirname, "/")));
-
+// serve static files from React app
+app.use(express.static(path.join(__dirname, "frontend/build")));
 // middleware - enable cors
 app.use(cors({origin: clientOrigin}));
-
-app.use(express.static("frontend/build"));
 // middleware - express-graphql
 app.use("/graphql", graphQLHTTP({
     schema: Schema,
     graphiql: false,
 }));
 
-// app.get("/", (req, res) => {
-//     console.log("this is being hit")
-//     return res.sendFile("../frontend/public/index.html");
-// });
+app.get("/", (req, res) => {
+    console.log("this is being hit")
+    return res.sendFile(path.join(__dirname, "/frontend/build/index.html"));
+});
 
 app.listen(PORT, () => console.log(`Pay no attention to the graphQL server listening on port:${PORT}`));
