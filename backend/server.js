@@ -11,7 +11,7 @@ const app = express();
 // middleware - encoding
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(path.join(__dirname, "/")));
+// app.use(express.static(path.join(__dirname, "/")));
 
 // middleware - enable cors
 app.use(cors({origin: clientOrigin}));
