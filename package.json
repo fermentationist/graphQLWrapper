@@ -2,13 +2,13 @@
   "name": "graphqlwrapper",
   "version": "0.0.2",
   "description": "",
-  "main": "/frontend/src/index.js",
+  "main": "server.js",
   "engine": {
     "node": "11.14.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./backend/server.js"
+    "start": "node server.js"
   },
   "author": "fermentationist",
   "license": "ISC",
