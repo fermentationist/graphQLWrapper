@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 // serve static files from React app
-app.use(express.static(path.join(__dirname, "/frontend/build")));
+app.use(express.static(path.join(__dirname, "/client/build")));
 // middleware - enable cors
 app.use(cors({origin: clientOrigin}));
 // middleware - express-graphql
@@ -23,7 +23,7 @@ app.use("/graphql", graphQLHTTP({
 
 app.get("*", (req, res) => {
     console.log("this is being hit")
-    return res.sendFile(path.join(__dirname, "/frontend/build/index.html"));
+    return res.sendFile(path.join(__dirname, "/client/build/index.html"));
 });
 
 app.listen(PORT, () => console.log(`Pay no attention to the graphQL server listening on port:${PORT}`));
