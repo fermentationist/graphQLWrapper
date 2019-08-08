@@ -16,7 +16,6 @@ app.use(express.static(path.join(__dirname, "/")));
 // middleware - enable cors
 app.use(cors({origin: clientOrigin}));
 
-
 app.use(express.static("frontend/build"));
 // middleware - express-graphql
 app.use("/graphql", graphQLHTTP({
@@ -24,9 +23,9 @@ app.use("/graphql", graphQLHTTP({
     graphiql: false,
 }));
 
-app.get("/", (req, res) => {
-    console.log("this is being hit")
-    return res.sendFile("../frontend/public/index.html");
-});
+// app.get("/", (req, res) => {
+//     console.log("this is being hit")
+//     return res.sendFile("../frontend/public/index.html");
+// });
 
 app.listen(PORT, () => console.log(`Pay no attention to the graphQL server listening on port:${PORT}`));
