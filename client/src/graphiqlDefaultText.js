@@ -41,21 +41,6 @@ query allCampaigns {
   }
 }
 
-query findScore ($scoreID: ID!){
-  score(id: $scoreID){
-    name
-    descript
-    status
-  }
-}
-
-query allScores {
-  scores{
-    name
-    status
-  }
-}
-
 query findBranding ($brandingID: ID!){
   branding (id: $brandingID){
     siteName, 
