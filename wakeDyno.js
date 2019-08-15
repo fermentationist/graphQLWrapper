@@ -1,9 +1,10 @@
 const fetch = require("node-fetch");
 const path = require("path");
+const os = require("os");
 
 // some constants
 const INTERVAL = 5000;// 5 minutes
-const DYNO_URL = process.env.NODE_ENV === "production" ? path.resolve(__dirname) : "http://localhost:4000";
+const DYNO_URL = process.env.NODE_ENV === "production" ? os.hostname() : "http://localhost:4000";
 // This script will run every 5 minutes to keep the heroku dyno awake and running 
 const wakeDyno = () => {
     console.log("path.dirname:", path.resolve(__dirname));
