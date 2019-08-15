@@ -3,7 +3,7 @@ const path = require("path");
 const url = require("url");
 
 // some constants
-const INTERVAL = 5000;// 5 minutes
+const INTERVAL = 300000;// 5 minutes
 const DYNO_URL = process.env.NODE_ENV === "production" ? "https://active-campaign-graphql.herokuapp.com" : "http://localhost:4000";
 // This script will run every 5 minutes to keep the heroku dyno awake and running 
 const wakeDyno = () => {
