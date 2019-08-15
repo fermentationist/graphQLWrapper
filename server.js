@@ -3,6 +3,8 @@ const cors = require("cors");
 const path = require("path");
 const bodyParser = require("body-parser");
 const graphQLHTTP = require("express-graphql");
+const wakeDyno = require("./wakeDyno.js");
+
 const Schema = require("./Schema.js");
 const PORT = process.env.PORT || 4000;
 const clientOrigin = process.env.NODE_ENV !== "production" ? "http://localhost:3000" : "https://active-campaign-graphql.herokuapp.com";
